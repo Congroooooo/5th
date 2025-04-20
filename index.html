@@ -12,99 +12,137 @@
             padding: 12px 30px;
             font-size: 1.5em;
             color: #8a2be2;
-            background: rgba(255, 255, 255, 0.9);
             border: 2px solid #8a2be2;
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             overflow: hidden;
             cursor: pointer;
-            display: block;
-            margin: 40px auto;
+            z-index: 10000;
         }
 
         .center-button:hover {
             background: #8a2be2;
             color: white;
-            transform: translateY(-2px);
+            transform: translate(-50%, -52%);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .center-button:active {
-            transform: translateY(0);
+            transform: translate(-50%, -50%);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            background-color: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .text p {
+            height: 100vh;
+            width: 100vw;
+            font-size: 8px;
+            line-height: 7px;
+            text-align: justify;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: url(jagi.png) no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgba(225, 225, 255, 0);
+        }
+
+        .trail-image {
+            position: absolute;
+            pointer-events: none;
+            width: 250px;
+            height: 350px;
+            border-radius: 8px;
+            border: 2px solid black;
+            background-color: #171717;
+            object-fit: cover;
+            opacity: 0;
+            transform-origin: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 575.98px) {
+            .text p {
+                font-size: 6px;
+                line-height: 5px;
+            }
+
+            .trail-image {
+                width: 150px;
+                height: 210px;
+            }
+
+            .center-button {
+                padding: 10px 20px;
+                font-size: 1.2em;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .text p {
+                font-size: 7px;
+                line-height: 6px;
+            }
+
+            .trail-image {
+                width: 180px;
+                height: 252px;
+            }
+
+            .center-button {
+                padding: 11px 25px;
+                font-size: 1.3em;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .trail-image {
+                width: 200px;
+                height: 280px;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .trail-image {
+                width: 220px;
+                height: 308px;
+            }
+        }
+
+        /* Ensure cursor is hidden on touch devices */
+        @media (hover: none) {
+            * {
+                cursor: auto;
+            }
+
+            .trail-image {
+                display: none;
+            }
+        }
     </style>
   </head>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: none;
-    }
-
-    body {
-      background-color: #000;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .text p {
-      height: 100vh;
-      width: 100vw;
-      font-size: 8px; /* Reduced from 10px to make text smaller */
-      line-height: 7px; /* Reduced from 9px to make lines closer */
-      text-align: justify;
-      margin: 0; /* Add this to ensure no margin */
-      padding: 0; /* Add this to ensure no padding */
-      overflow: hidden; /* Add this to prevent scrolling */
-      background: url(jagi.png) no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: rgba(225, 225, 255, 0);
-    }
-
-    .trail-image {
-      position: absolute;
-      pointer-events: none;
-      width: 250px; /* Increased from 100px to 200px */
-      height: 350px; /* Increased from 100px to 200px */
-      border-radius: 8px;
-      border: 2px solid black;
-      background-color: #171717;
-      object-fit: cover;
-      opacity: 0;
-      transform-origin: center;
-    }
-
-    .center-button {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 15px 30px;
-      font-size: 18px;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      border: 2px solid white;
-      border-radius: 25px;
-      cursor: pointer;
-      z-index: 10000;
-      transition: all 0.3s ease;
-    }
-
-    .center-button:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-  </style>
 
   <body>
     <div class="text">
@@ -215,8 +253,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -256,8 +294,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -297,8 +335,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -338,8 +376,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -379,8 +417,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -420,8 +458,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -461,8 +499,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -502,8 +540,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -543,8 +581,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -584,8 +622,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -625,8 +663,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -666,8 +704,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -707,8 +745,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -748,8 +786,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -789,8 +827,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -830,8 +868,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -871,8 +909,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -912,8 +950,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -953,8 +991,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -994,8 +1032,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1035,8 +1073,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1076,8 +1114,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1117,8 +1155,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1158,8 +1196,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1199,8 +1237,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1240,8 +1278,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1281,8 +1319,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1322,8 +1360,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1363,8 +1401,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1404,8 +1442,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1445,8 +1483,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1486,8 +1524,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1527,8 +1565,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1568,8 +1606,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1609,8 +1647,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
@@ -1650,8 +1688,8 @@
         you knew But I disguise the truth I say I'm happy but I'm still stuck on
         us, mmm, mmm, mmm Does your mind play this game too? Think 'bout me and
         you I guess I'll just pretend Until it all makes sense, hmm, hmm, hmm,
-        hmm See you face to face, I'm thinking 'bout the days we used to be But
-        I can't make a scene, but I can't make a scene See you face to face, I'm
+        hmm See you face to face, I'm thinking 'bout the days we used to be But I
+        can't make a scene, but I can't make a scene See you face to face, I'm
         thinking 'bout the days we used to be But I can't make a scene, but I
         can't make it seem Like I want you You Even if it's true Even if it's
         true I guess it's overdue Tell me your point of view Tell me, am I to
