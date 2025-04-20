@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf7f7;
+            font-family: 'Dancing Script', cursive;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 6vh 0;
+            margin-bottom: 4vh;
+        }
+
+        .name-title {
+            font-size: min(3.5em, 7vh);
+            color: #333;
+            line-height: 1.4;
+            padding: 0 20px;
+        }
+
+        .section {
+            width: 100%;
+            padding: 12vh 12vw;
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .text-block {
+            width: 55%;
+            font-size: 1.4em;
+            line-height: 2;
+            color: #444;
+            z-index: 2;
+            position: relative;
+        }
+
+        .text-block p {
+            margin-bottom: 2vh;
+        }
+
+        .section:nth-child(odd) .text-block {
+            padding-right: 8vw;
+        }
+
+        .section:nth-child(even) .text-block {
+            margin-left: auto;
+            padding-left: 8vw;
+        }
+
+        .polaroid {
+            position: absolute;
+            background: white;
+            padding: 15px 15px 45px 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 280px;
+            z-index: 1;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        /* First section - image on right */
+        .section:nth-child(odd) .polaroid {
+            right: 12vw;
+            transform: rotate(5deg);
+        }
+
+        /* Second section - image on left */
+        .section:nth-child(even) .polaroid {
+            left: 12vw;
+            transform: rotate(-8deg);
+        }
+
+        /* Specific section adjustments */
+        .section:nth-child(2) { margin-top: 8vh; }
+        .section:nth-child(3) { margin-top: 8vh; }
+        .section:nth-child(4) { margin-top: 8vh; }
+        .section:nth-child(5) { margin-top: 8vh; }
+
+        .heart {
+            position: absolute;
+            opacity: 0.9;
+            z-index: 3;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Hearts with different sizes */
+        .heart-small { font-size: 1.2em; }
+        .heart-medium { font-size: 1.8em; }
+        .heart-large { font-size: 2.4em; }
+
+        /* Hearts positioning */
+        .heart-1 { top: 15vh; left: 8vw; animation: float 6s ease-in-out infinite; }
+        .heart-2 { top: 50vh; right: 10vw; animation: float 4s ease-in-out infinite; }
+        .heart-3 { bottom: 20vh; left: 15vw; animation: float 5s ease-in-out infinite; }
+        .heart-4 { top: 30vh; right: 15vw; animation: float 7s ease-in-out infinite; }
+        .heart-5 { top: 70vh; left: 20vw; animation: float 4s ease-in-out infinite; }
+        .heart-6 { bottom: 40vh; right: 18vw; animation: float 6s ease-in-out infinite; }
+        .heart-7 { top: 25vh; left: 25vw; animation: float 5s ease-in-out infinite; }
+        .heart-8 { bottom: 60vh; right: 25vw; animation: float 7s ease-in-out infinite; }
+        .heart-9 { top: 45vh; left: 12vw; animation: float 4s ease-in-out infinite; }
+        .heart-10 { bottom: 30vh; right: 12vw; animation: float 6s ease-in-out infinite; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Adjust heart colors for variety */
+        .heart-pink { color: #ff6b6b; }
+        .heart-red { color: #ff4646; }
+        .heart-rose { color: #ff8da1; }
+
+        br {
+            margin-bottom: 0.8em;
+        }
+
+        /* Add before the existing styles */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            opacity: 0.8;
+            animation: floatUpward 15s linear infinite;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            filter: drop-shadow(0 0 3px rgba(255, 107, 107, 0.3));
+        }
+
+        /* Different sizes for variety */
+        .heart-tiny { font-size: 1em; }
+        .heart-small { font-size: 1.5em; }
+        .heart-medium { font-size: 2.2em; }
+        .heart-large { font-size: 3em; }
+
+        /* Different colors with more vibrant shades */
+        .heart-pink { color: #ff4d8d; }
+        .heart-red { color: #ff2d2d; }
+        .heart-rose { color: #ff66a3; }
+        .heart-light { color: #ff99b3; }
+
+        @keyframes floatUpward {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Adjust section and content z-index to appear above hearts */
+        .section {
+            position: relative;
+            z-index: 2;
+            background: rgba(250, 247, 247, 0.7);
+            margin: 2vh 0;
+            backdrop-filter: blur(3px);
+        }
+
+        .header {
+            position: relative;
+            z-index: 2;
+            background: rgba(250, 247, 247, 0.7);
+            backdrop-filter: blur(3px);
+        }
+
+        .back-button-container {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .back-button {
+            font-family: 'Dancing Script', cursive;
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 1.5em;
+            color: #8a2be2;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #8a2be2;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-button:hover {
+            background: #8a2be2;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="name-title">Happy 5th monthsarry Jagi</h1>
+    </div>
+
+    <!-- First section -->
+    <div class="section">
+        <div class="text-block">
+            <p>
+                It's been five months — how quickly time slips through our fingers like a whisper in the wind.<br>
+                Yet, I still remember the very first moment I saw you.<br>
+                In a crowded gymnasium filled with noise and movement,<br>
+                your voice rose above it all —<br>
+                and suddenly, the chaos became calm,<br>
+                the world paused, and all I could hear was you.<br>
+                In that instant, my heart knew peace for the first time.
+            </p>
+        </div>
+        <div class="polaroid">
+            <img src="first.jpg" alt="Memory 1">
+        </div>
+    </div>
+
+    <!-- Second section -->
+    <div class="section">
+        <div class="text-block">
+            <p>
+                I know I haven't given you grand gifts,
+                nor taken you to the beautiful places you've always dreamed of.<br>
+                All I have for now is this simple letter,<br>
+                a piece of my heart wrapped in words —<br>
+                but I hope it reminds you that you've always had all of me.
+            </p>
+        </div>
+        <div class="polaroid">
+            <img src="2nd.jpg" alt="Memory 2">
+        </div>
+    </div>
+
+    <!-- Third section -->
+    <div class="section">
+        <div class="text-block">
+            <p>
+                I dream of the day I can finally give you everything you truly deserve.<br>
+                But until that day comes, please stay.<br>
+                Please hold my hand, as we continue to grow,<br>
+                not just as lovers, but as teammates,<br>
+                as soulmates destined to walk this path together.
+            </p>
+        </div>
+        <div class="polaroid">
+            <img src="3rd.jpg" alt="Memory 3">
+        </div>
+    </div>
+
+    <!-- Fourth section -->
+    <div class="section">
+        <div class="text-block">
+            <p>
+                This letter shouldn't be filled with apologies,<br>
+                but with celebration — of us,<br>
+                of how far we've come,<br>
+                of the love that bloomed between our quiet moments and loud laughter.<br>
+                Five months of learning, of loving, of believing in each other.<br>
+                Five months of building something real.<br>
+                And my heart hopes for so many more months, years, and lifetimes with you.
+            </p>
+        </div>
+        <div class="polaroid">
+            <img src="13.jpg" alt="Memory 4">
+        </div>
+    </div>
+
+    <!-- Fifth section -->
+    <div class="section">
+        <div class="text-block">
+            <p>
+                Let's never give up. <br>
+                Let's hold on — tightly, gently, bravely. <br>
+                Happy 5th Monthsary, jagi dear. <br>
+                I love you more than words can ever hold. <br> <br>
+
+                <strong>Forever yours,</strong><br>
+                Your Jagi
+            </p>
+        </div>
+        <div class="polaroid">
+            <img src="LAST.jpg" alt="Memory 5">
+        </div>
+    </div>
+
+    <!-- Hearts -->
+    <span class="heart heart-medium heart-pink heart-1">♥</span>
+    <span class="heart heart-large heart-red heart-2">♥</span>
+    <span class="heart heart-small heart-rose heart-3">♥</span>
+    <span class="heart heart-medium heart-red heart-4">♥</span>
+    <span class="heart heart-small heart-pink heart-5">♥</span>
+    <span class="heart heart-large heart-rose heart-6">♥</span>
+    <span class="heart heart-medium heart-pink heart-7">♥</span>
+    <span class="heart heart-small heart-red heart-8">♥</span>
+    <span class="heart heart-large heart-rose heart-9">♥</span>
+    <span class="heart heart-medium heart-pink heart-10">♥</span>
+
+    <!-- Section-specific hearts -->
+    <div class="section-hearts">
+        <span class="heart heart-small heart-pink" style="top: 10%; right: 30%;">♥</span>
+        <span class="heart heart-medium heart-rose" style="bottom: 20%; left: 35%;">♥</span>
+        <span class="heart heart-small heart-red" style="top: 40%; left: 25%;">♥</span>
+        <span class="heart heart-medium heart-pink" style="bottom: 30%; right: 40%;">♥</span>
+        <span class="heart heart-small heart-rose" style="top: 60%; right: 25%;">♥</span>
+    </div>
+
+    <!-- Add this right after <body> tag -->
+    <div class="hearts-background">
+        <!-- Generate 40 hearts with different sizes, colors, and positions -->
+        <span class="floating-heart heart-tiny heart-pink" style="left: 5%; animation-delay: 0s;">♥</span>
+        <span class="floating-heart heart-small heart-red" style="left: 15%; animation-delay: 2s;">♥</span>
+        <span class="floating-heart heart-medium heart-rose" style="left: 25%; animation-delay: 4s;">♥</span>
+        <span class="floating-heart heart-large heart-light" style="left: 35%; animation-delay: 6s;">♥</span>
+        <span class="floating-heart heart-tiny heart-red" style="left: 45%; animation-delay: 8s;">♥</span>
+        <span class="floating-heart heart-small heart-pink" style="left: 55%; animation-delay: 10s;">♥</span>
+        <span class="floating-heart heart-medium heart-light" style="left: 65%; animation-delay: 12s;">♥</span>
+        <span class="floating-heart heart-large heart-rose" style="left: 75%; animation-delay: 14s;">♥</span>
+        <span class="floating-heart heart-tiny heart-light" style="left: 85%; animation-delay: 1s;">♥</span>
+        <span class="floating-heart heart-small heart-rose" style="left: 95%; animation-delay: 3s;">♥</span>
+        <span class="floating-heart heart-medium heart-pink" style="left: 10%; animation-delay: 5s;">♥</span>
+        <span class="floating-heart heart-large heart-red" style="left: 20%; animation-delay: 7s;">♥</span>
+        <span class="floating-heart heart-tiny heart-rose" style="left: 30%; animation-delay: 9s;">♥</span>
+        <span class="floating-heart heart-small heart-light" style="left: 40%; animation-delay: 11s;">♥</span>
+        <span class="floating-heart heart-medium heart-red" style="left: 50%; animation-delay: 13s;">♥</span>
+        <span class="floating-heart heart-large heart-pink" style="left: 60%; animation-delay: 15s;">♥</span>
+        <span class="floating-heart heart-tiny heart-light" style="left: 70%; animation-delay: 2.5s;">♥</span>
+        <span class="floating-heart heart-small heart-rose" style="left: 80%; animation-delay: 4.5s;">♥</span>
+        <span class="floating-heart heart-medium heart-pink" style="left: 90%; animation-delay: 6.5s;">♥</span>
+        <span class="floating-heart heart-large heart-red" style="left: 100%; animation-delay: 8.5s;">♥</span>
+        <!-- Second set with different positions -->
+        <span class="floating-heart heart-tiny heart-pink" style="left: 7%; animation-delay: 1.5s;">♥</span>
+        <span class="floating-heart heart-small heart-light" style="left: 17%; animation-delay: 3.5s;">♥</span>
+        <span class="floating-heart heart-medium heart-rose" style="left: 27%; animation-delay: 5.5s;">♥</span>
+        <span class="floating-heart heart-large heart-red" style="left: 37%; animation-delay: 7.5s;">♥</span>
+        <span class="floating-heart heart-tiny heart-light" style="left: 47%; animation-delay: 9.5s;">♥</span>
+        <span class="floating-heart heart-small heart-pink" style="left: 57%; animation-delay: 11.5s;">♥</span>
+        <span class="floating-heart heart-medium heart-red" style="left: 67%; animation-delay: 13.5s;">♥</span>
+        <span class="floating-heart heart-large heart-rose" style="left: 77%; animation-delay: 15.5s;">♥</span>
+        <span class="floating-heart heart-tiny heart-pink" style="left: 87%; animation-delay: 2.8s;">♥</span>
+        <span class="floating-heart heart-small heart-light" style="left: 97%; animation-delay: 4.8s;">♥</span>
+        <!-- Add more variations -->
+        <span class="floating-heart heart-medium heart-red" style="left: 12%; animation-delay: 6.8s;">♥</span>
+        <span class="floating-heart heart-large heart-rose" style="left: 22%; animation-delay: 8.8s;">♥</span>
+        <span class="floating-heart heart-tiny heart-light" style="left: 32%; animation-delay: 10.8s;">♥</span>
+        <span class="floating-heart heart-small heart-pink" style="left: 42%; animation-delay: 12.8s;">♥</span>
+        <span class="floating-heart heart-medium heart-rose" style="left: 52%; animation-delay: 14.8s;">♥</span>
+        <span class="floating-heart heart-large heart-red" style="left: 62%; animation-delay: 1.2s;">♥</span>
+        <span class="floating-heart heart-tiny heart-pink" style="left: 72%; animation-delay: 3.2s;">♥</span>
+        <span class="floating-heart heart-small heart-light" style="left: 82%; animation-delay: 5.2s;">♥</span>
+        <span class="floating-heart heart-medium heart-rose" style="left: 92%; animation-delay: 7.2s;">♥</span>
+        <span class="floating-heart heart-large heart-red" style="left: 3%; animation-delay: 9.2s;">♥</span>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html> 
